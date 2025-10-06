@@ -43,13 +43,13 @@ public class DoubleHashingSort implements SortAlgorithm {
     private <T extends Comparable<T>> T[] doubleHashingSort(T[] array, int bucketCount) {
         // Create buckets
         @SuppressWarnings("unchecked")
-        T[][] buckets = (T[][]) new Comparable[bucketCount][];
+        T[][] buckets = (T[][]) new Object[bucketCount][];
         int[] bucketSizes = new int[bucketCount];
 
         // Initialize buckets
         for (int i = 0; i < bucketCount; i++) {
             @SuppressWarnings("unchecked")
-            T[] bucket = (T[]) new Comparable[array.length];
+            T[] bucket = (T[]) new Object[array.length];
             buckets[i] = bucket;
             bucketSizes[i] = 0;
         }
@@ -66,7 +66,7 @@ public class DoubleHashingSort implements SortAlgorithm {
             if (bucketSizes[i] > 0) {
                 // Create actual sized array for this bucket
                 @SuppressWarnings("unchecked")
-                T[] bucket = (T[]) new Comparable[bucketSizes[i]];
+                T[] bucket = (T[]) new Object[bucketSizes[i]];
                 System.arraycopy(buckets[i], 0, bucket, 0, bucketSizes[i]);
 
                 // Sort the bucket
